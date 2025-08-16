@@ -26,22 +26,36 @@
       display:grid; place-items:center; overflow-x:hidden;
     }
 
-    /* ===== VIEWPORT WATERMARK (NEW) ===== */
-body::before{
-  content:"";
-  position: fixed;
-  inset: 0;
-  background: url("./assets/lion-watermark-dark.png?v=6")
-              center 42% / clamp(160vmin, 180vmin, 2600px) no-repeat;
-  opacity: .11;
-  pointer-events: none;
-  z-index: 0;
-}
+    /* ===== VIEWPORT WATERMARK ===== Just incase */
+    /* Old (bigger & slightly stronger):
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      background: url("./assets/lion-watermark-dark.png?v=6")
+                  center 42% / clamp(160vmin, 180vmin, 2600px) no-repeat;
+      opacity: .11;
+      pointer-events: none;
+      z-index: 0;
+    }
+    */
 
+    
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      background: url("./assets/lion-watermark-dark.png?v=8")
+                  center 45% / clamp(145vmin, 165vmin, 2300px) no-repeat;
+      opacity: .10;            /* was .11 */
+      pointer-events: none;
+      z-index: 0;
+    }
 
+    
     .page{
-      position:relative; 
-      z-index:1;                         /* ensure panel sits above viewport watermark */
+      position:relative;
+      z-index:1;
       width:min(980px, 92vw); margin:9vh auto;
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border:1px solid var(--border); border-radius:20px; padding:32px 28px 24px;
@@ -49,7 +63,7 @@ body::before{
       backdrop-filter: blur(3px);
     }
 
-    /* ===== CARD WATERMARK (OLD) — kept but disabled for now =====
+    /* ===== CARD WATERMARK (OLD) — Just incase =====
     .page::before{
       content:"";
       position:absolute;
@@ -116,8 +130,21 @@ body::before{
       margin-top:16px; color:var(--muted); font-size:12px; display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap;
     }
     .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
-    @media (max-width:860px){ .grid{grid-template-columns:1fr 1fr} }
-    @media (max-width:520px){ .grid{grid-template-columns:1fr} .badge{margin:10px 0 0 auto} }
+
+    /* Mobile guard: keep the mark visible but not overpowering on small screens */
+    @media (max-width: 640px){
+      body::before{
+        background-position: center 50%;
+        background-size: 120vmin;
+        opacity: .12;
+      }
+      .grid{grid-template-columns:1fr 1fr}
+    }
+
+    @media (max-width:520px){
+      .grid{grid-template-columns:1fr}
+      .badge{margin:10px 0 0 auto}
+    }
   </style>
 </head>
 <body>
@@ -177,5 +204,3 @@ body::before{
   <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
-
-
