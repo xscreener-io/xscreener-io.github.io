@@ -34,13 +34,17 @@
     }
     /* watermark */
     .page::before{
-      content:""; position:absolute; inset:0; pointer-events:none;
-      background:url("assets/lion-watermark.png") center/62vmin no-repeat;
-      opacity:.06; filter:grayscale(1) contrast(1.05);
-      border-radius:20px;         /* keep inside the rounded panel */
-      z-index:0;
-       
-    }
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background: url("./assets/lion-watermark-dark.png?v=2") center/62vmin no-repeat;
+  opacity:.06;
+  filter: grayscale(1) contrast(1.05);
+  border-radius:20px; /* keep inside the rounded panel */
+  z-index:0;
+}
+
     .page > *{ position:relative; z-index:1; } /* content above watermark */
 
     header{display:flex; align-items:center; gap:14px; margin-bottom:14px}
@@ -155,5 +159,6 @@
   <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
+
 
 
