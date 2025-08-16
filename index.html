@@ -25,27 +25,46 @@
       color:var(--ink); background:radial-gradient(1200px 800px at 70% -20%, #132033 0%, #0b1118 55%) fixed;
       display:grid; place-items:center; overflow-x:hidden;
     }
+
+    /* ===== VIEWPORT WATERMARK (NEW) ===== */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      /* make it hero-sized and responsive; bump v=4 to break cache when you update the file */
+      background: url("./assets/lion-watermark-dark.png?v=4") center/
+                  clamp(100vmin, 110vmin, 1400px) no-repeat;
+      opacity: .10;          /* tweak .08 – .14 to taste */
+      filter: none;          /* white strokes already read well */
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .page{
-      position:relative; width:min(980px, 92vw); margin:9vh auto;
+      position:relative; 
+      z-index:1;                         /* ensure panel sits above viewport watermark */
+      width:min(980px, 92vw); margin:9vh auto;
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border:1px solid var(--border); border-radius:20px; padding:32px 28px 24px;
       box-shadow: 0 10px 30px rgba(0,0,0,.45);
       backdrop-filter: blur(3px);
     }
-    /* watermark */
-   .page::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background: url("./assets/lion-watermark-dark.png?v=3") center/70vmin no-repeat;
-  opacity:.12;             
-  filter:none;             
-  border-radius:20px;      
-  z-index:0;
-}
 
-    .page > *{ position:relative; z-index:1; } /* content above watermark */
+    /* ===== CARD WATERMARK (OLD) — kept but disabled for now =====
+    .page::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background: url("./assets/lion-watermark-dark.png?v=3") center/70vmin no-repeat;
+      opacity:.12;
+      filter:none;
+      border-radius:20px;
+      z-index:0;
+    }
+    ======================================= */
+
+    .page > *{ position:relative; z-index:1; } /* content above any panel watermark (safe to keep) */
 
     header{display:flex; align-items:center; gap:14px; margin-bottom:14px}
     .logo{
@@ -159,7 +178,3 @@
   <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
-
-
-
-
