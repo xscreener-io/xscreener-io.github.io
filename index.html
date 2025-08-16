@@ -33,15 +33,15 @@
       backdrop-filter: blur(3px);
     }
     /* watermark */
-    .page::before{
+   .page::before{
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
-  background: url("./assets/lion-watermark-dark.png?v=2") center/62vmin no-repeat;
-  opacity:.06;
-  filter: grayscale(1) contrast(1.05);
-  border-radius:20px; /* keep inside the rounded panel */
+  background: url("./assets/lion-watermark-dark.png?v=3") center/70vmin no-repeat;
+  opacity:.12;             
+  filter:none;             
+  border-radius:20px;      
   z-index:0;
 }
 
@@ -159,6 +159,7 @@
   <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
+
 
 
 
