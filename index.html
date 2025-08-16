@@ -27,16 +27,17 @@
     }
 
     /* ===== VIEWPORT WATERMARK (NEW) ===== */
-   body::before{
+body::before{
   content:"";
   position: fixed;
   inset: 0;
-  background: url("./assets/lion-watermark-dark.png?v=5")
-              center 44% / clamp(135vmin, 150vmin, 2200px) no-repeat;
-  opacity: .12;          /* try .10–.14 */
+  background: url("./assets/lion-watermark-dark.png?v=6")
+              center 42% / clamp(160vmin, 180vmin, 2600px) no-repeat;
+  opacity: .11;
   pointer-events: none;
   z-index: 0;
 }
+
 
     .page{
       position:relative; 
@@ -176,4 +177,5 @@
   <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
+
 
