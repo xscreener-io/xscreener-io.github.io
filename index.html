@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>XScreener — Pre-launch</title>
+  <meta name="description" content="XScreener is a real-time DEX token discovery & monetization platform (ETH + SOL). TradingView Advanced Charts integration is in progress."/>
+  <meta property="og:title" content="XScreener — Pre-launch" />
+  <meta property="og:description" content="TradingView Advanced Charts integration in progress. ETH indexer complete; SOL indexer in progress." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://xscreener-io.github.io" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1118; --panel:#0f1621; --ink:#e8edf2; --muted:#9aa7b4;
+      --brand:#69d1ff; --accent:#00e1a2; --border:#1b2432;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font:16px/1.55 "Inter",system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--ink); background:radial-gradient(1200px 800px at 70% -20%, #132033 0%, #0b1118 55%) fixed;
+      display:grid; place-items:center; overflow-x:hidden;
+    }
+    .page{
+      position:relative; width:min(980px, 92vw); margin:9vh auto;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--border); border-radius:20px; padding:32px 28px 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.45);
+      backdrop-filter: blur(3px);
+    }
+    /* watermark */
+    .page::before{
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background:
+        url("./assets/lion-watermark.png") center/62vmin no-repeat;
+      opacity:.05; filter:grayscale(1) contrast(1.05);
+    }
+
+    header{display:flex; align-items:center; gap:14px; margin-bottom:14px}
+    .logo{
+      width:44px; height:44px; border-radius:12px;
+      background:url("./assets/logo.svg") center/contain no-repeat, var(--panel);
+      border:1px solid var(--border);
+    }
+    .brand h1{margin:0; font-size:22px; letter-spacing:.3px}
+    .brand p{margin:2px 0 0; color:var(--muted); font-size:14px}
+
+    .badge{
+      margin-left:auto; display:inline-flex; align-items:center; gap:8px;
+      border:1px solid #214a35; color:#bdf6e5; background:rgba(0,225,162,.08);
+      padding:6px 10px; border-radius:999px; font-weight:600; font-size:12px;
+      letter-spacing:.3px; text-transform:uppercase;
+      box-shadow:inset 0 0 0 1px rgba(0,225,162,.15);
+      animation:pulse 2.8s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(0,225,162,.0)} 50%{box-shadow:0 0 0 6px rgba(0,225,162,.12)} }
+
+    .hero{
+      margin:12px 0 22px; padding:20px; border:1px dashed var(--border); border-radius:14px;
+      background:rgba(255,255,255,.01)
+    }
+    .hero h2{margin:0 0 6px; font-size:28px; line-height:1.25}
+    .hero p{margin:0; color:var(--muted)}
+
+    .grid{
+      display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:18px 0 8px;
+    }
+    .card{
+      background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:14px;
+      min-height:90px; display:flex; flex-direction:column; justify-content:center; gap:6px;
+    }
+    .k{color:var(--muted); font-size:12px; letter-spacing:.2px; text-transform:uppercase}
+    .v{font-weight:600}
+    .ok{color:#7fffd4} .wip{color:#ffd57f}
+    .req{color:#69d1ff}
+    .cta{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:18px
+    }
+    .btn{
+      appearance:none; border:1px solid var(--border); background:#152233; color:var(--ink);
+      padding:12px 14px; border-radius:12px; font-weight:600; text-decoration:none;
+      transition:transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .btn:hover{transform:translateY(-1px); border-color:#27405e}
+    .btn.primary{background:linear-gradient(180deg, #1b3651, #152233); border-color:#27405e}
+    footer{
+      margin-top:16px; color:var(--muted); font-size:12px; display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap;
+    }
+    .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
+    @media (max-width:860px){ .grid{grid-template-columns:1fr 1fr} }
+    @media (max-width:520px){ .grid{grid-template-columns:1fr} .badge{margin:10px 0 0 auto} }
+  </style>
+</head>
+<body>
+  <main class="page" role="main" aria-labelledby="title">
+    <header>
+      <div class="logo" aria-hidden="true"></div>
+      <div class="brand">
+        <h1 id="title">XScreener</h1>
+        <p>Real-time DEX token discovery & monetization platform (ETH + SOL)</p>
+      </div>
+      <span class="badge">Pre-launch</span>
+    </header>
+
+    <section class="hero" aria-label="Project status">
+      <h2>TradingView Advanced Charts — Integration in Progress</h2>
+      <p>We’ve implemented a TV-compatible datafeed and are finalizing the Advanced Charts integration ahead of public release.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="k">ETH Indexer</div>
+          <div class="v ok">Complete</div>
+          <div class="k">Output</div>
+          <div class="v mono">OHLCV + live bars</div>
+        </div>
+        <div class="card">
+          <div class="k">SOL Indexer</div>
+          <div class="v wip">In progress</div>
+          <div class="k">Status</div>
+          <div class="v mono">Backfill + live</div>
+        </div>
+        <div class="card">
+          <div class="k">TV Datafeed</div>
+          <div class="v ok">Implemented</div>
+          <div class="k">Methods</div>
+          <div class="v mono">resolve | getBars | subscribeBars</div>
+        </div>
+        <div class="card">
+          <div class="k">Advanced Charts</div>
+          <div class="v req">Access requested</div>
+          <div class="k">Use</div>
+          <div class="v mono">multi-layout, drawings, studies</div>
+        </div>
+      </div>
+
+      <div class="cta">
+        <a class="btn primary" href="mailto:partnerships@xscreener.io">Contact Partnerships</a>
+        <a class="btn" href="https://github.com/codingmania-crypto" target="_blank" rel="noopener">Developer GitHub</a>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="y"></span> XScreener. All rights reserved.</span>
+      <span>For media & integrations: <a href="mailto:partnerships@xscreener.io">partnerships@xscreener.io</a></span>
+    </footer>
+  </main>
+
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
