@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>XScreener — Demo Chart</title>
+  <meta name="robots" content="noindex"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <style>
+    :root{ --bg:#0b1118; --panel:#0f1621; --ink:#e8edf2; --muted:#9aa7b4; --border:#1b2432; }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{
+      margin:0; font:15px/1.55 "Inter",system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--ink);
+      background:radial-gradient(1200px 800px at 70% -20%, #132033 0%, #0b1118 55%) fixed;
+      display:grid; grid-template-rows:auto 1fr; gap:16px; padding:18px;
+    }
+    header{
+      display:flex; align-items:center; gap:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border:1px solid var(--border); border-radius:14px; padding:10px 12px;
+    }
+    .dot{width:8px;height:8px;border-radius:999px;background:#00e1a2;box-shadow:0 0 10px rgba(0,225,162,.6)}
+    .title{font-weight:700}
+    .muted{color:var(--muted)}
+    .actions{margin-left:auto;display:flex;gap:8px}
+    .btn{
+      appearance:none; border:1px solid var(--border); color:var(--ink);
+      background:#152233; padding:8px 10px; border-radius:10px; font-weight:600; text-decoration:none;
+    }
+    .panel{
+      border:1px solid var(--border); border-radius:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      box-shadow:0 10px 30px rgba(0,0,0,.45); overflow:hidden;
+    }
+    #chart{height:70vh;min-height:460px}
+    footer{color:var(--muted); font-size:12px; display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap}
+    @media (max-width:560px){ #chart{height:64vh} }
+  </style>
+</head>
+<body>
+  <header class="panel">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="title">XScreener</div>
+    <div class="muted">Demo: ETH/USDT candlesticks (Lightweight Charts)</div>
+    <div class="actions">
+      <a class="btn" href="/">← Back</a>
+    </div>
+  </header>
+
+  <main class="panel">
+    <div id="chart"></div>
+  </main>
+
+  <footer>
+    <span>© <span id="y"></span> XScreener</span>
+    <span class="muted">Demo data for evaluation purposes</span>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    const container = document.getElementById('chart');
+    const chart = LightweightCharts.createChart(container, {
+      layout: { background: { type: 'solid', color: 'transparent' }, textColor: '#e8edf2' },
+      grid:   { vertLines:{ color:'#1b2432' }, horzLines:{ color:'#1b2432' } },
+      rightPriceScale: { borderColor:'#1b2432' },
+      timeScale: { borderColor:'#1b2432' },
+      crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+      autoSize: true,
+    });
+
+    const candleSeries = chart.addCandlestickSeries({
+      upColor:'#2ecc71', downColor:'#e74c3c', borderDownColor:'#e74c3c',
+      borderUpColor:'#2ecc71', wickDownColor:'#e74c3c', wickUpColor:'#2ecc71'
+    });
+
+    // --- Demo OHLCV data (daily) ---
+    const data = [
+      { time:'2024-11-01', open:3521, high:3575, low:3410, close:3490 },
+      { time:'2024-11-02', open:3490, high:3552, low:3444, close:3515 },
+      { time:'2024-11-03', open:3515, high:3592, low:3478, close:3580 },
+      { time:'2024-11-04', open:3580, high:3605, low:3504, close:3522 },
+      { time:'2024-11-05', open:3522, high:3559, low:3465, close:3478 },
+      { time:'2024-11-06', open:3478, high:3502, low:3399, close:3411 },
+      { time:'2024-11-07', open:3411, high:3460, low:3382, close:3430 },
+      { time:'2024-11-08', open:3430, high:3510, low:3422, close:3499 },
+      { time:'2024-11-09', open:3499, high:3560, low:3485, close:3544 },
+      { time:'2024-11-10', open:3544, high:3590, low:3512, close:3558 },
+      { time:'2024-11-11', open:3558, high:3604, low:3520, close:3597 },
+      { time:'2024-11-12', open:3597, high:3630, low:3566, close:3615 },
+      { time:'2024-11-13', open:3615, high:3654, low:3575, close:3588 },
+      { time:'2024-11-14', open:3588, high:3620, low:3542, close:3556 },
+      { time:'2024-11-15', open:3556, high:3570, low:3499, close:3512 },
+      { time:'2024-11-16', open:3512, high:3551, low:3500, close:3540 },
+      { time:'2024-11-17', open:3540, high:3595, low:3525, close:3580 },
+      { time:'2024-11-18', open:3580, high:3610, low:3550, close:3601 },
+      { time:'2024-11-19', open:3601, high:3633, low:3586, close:3590 },
+      { time:'2024-11-20', open:3590, high:3624, low:3564, close:3618 },
+    ];
+    candleSeries.setData(data);
+
+    // --- Simulate "live" updates every 2.5s so the chart feels alive ---
+    setInterval(() => {
+      const last = data[data.length - 1];
+      const nextTime = new Date(new Date(last.time).getTime() + 24*60*60*1000);
+      const t = nextTime.toISOString().slice(0,10);
+      const base = last.close;
+      const rand = () => (Math.random() - 0.5) * 40;
+      const open  = Math.max(50, base + rand());
+      const close = Math.max(50, open + rand());
+      const high  = Math.max(open, close) + Math.random()*20;
+      const low   = Math.min(open, close) - Math.random()*20;
+      const bar = { time: t, open, high, low, close };
+      data.push(bar);
+      candleSeries.update(bar);
+    }, 2500);
+
+    // NOTE: When your ETH indexer endpoint is public, replace the demo block with a real fetch:
+    /*
+    fetch('https://api.xscreener.io/ohlcv?symbol=ETHUSDT&interval=1d')
+      .then(r => r.json())
+      .then(rows => candleSeries.setData(rows.map(r => ({
+        time: r.time, open: r.open, high: r.high, low: r.low, close: r.close
+      }))));
+    */
+  </script>
+</body>
+</html>
